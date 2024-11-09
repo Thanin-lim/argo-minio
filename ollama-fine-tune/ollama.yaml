@@ -24,7 +24,7 @@ kind: Service
 metadata:
   name: ollama-service
 spec:
-  type: NodePort  # This line makes the service accessible via NodePort
+  type: LoadBalancer  # Change to LoadBalancer for external access via cloud load balancer
   selector:
     app: ollama
   ports:
