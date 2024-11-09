@@ -35,7 +35,7 @@ spec:
       targetPort: 11434
   selector:
     app: ollama
-  type: NodePort
+
 
   # The port on the node that you want to use for the service
 
