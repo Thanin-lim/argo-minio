@@ -24,7 +24,6 @@ kind: Service
 metadata:
   name: ollama-service
 spec:
-  type: NodePort  # This line makes the service accessible via NodePort
   selector:
     app: ollama
   ports:
