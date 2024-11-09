@@ -17,6 +17,11 @@ spec:
         image: warvba22/ollama:10.1 # Replace with desired Ollama image tag
         ports:
         - containerPort: 11434
+        env:
+        - name: OLLAMA_HOST
+          value: "0.0.0.0"
+        - name: OLLAMA_MODEL
+          value: "/app"
         
 ---
 apiVersion: v1
@@ -30,3 +35,4 @@ spec:
   - protocol: TCP
     port: 11434
     targetPort: 11434
+
