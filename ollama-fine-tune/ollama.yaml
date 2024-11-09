@@ -23,10 +23,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ollama-service
+  namespace: ollama
 spec:
+  type: NodePort  # This line makes the service accessible via NodePort
   selector:
     app: ollama
   ports:
   - protocol: TCP
     port: 11434
     targetPort: 11434
+    nodePort: 11434  # Optional: specify the node port (must be between 30000-32767)
