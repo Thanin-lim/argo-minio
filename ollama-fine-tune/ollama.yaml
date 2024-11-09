@@ -23,18 +23,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app.kubernetes.io/instance: test2
   name: ollama-service
-  namespace: test22  # Ensure this matches the namespace where you want the service
 spec:
-  ports:
-    - nodePort: 30001
-      port: 11434
-      protocol: TCP
-      targetPort: 11434
   selector:
     app: ollama
+  ports:
+  - protocol: TCP
+    port: 11434          # The port that the service will expose
+    targetPort: 11434    # The port on the container that the service should forward traffic to
+    nodePort: 30000      # The port on the node that you want to use for the service
+  type: LoadBalancer  
 
 
   # The port on the node that you want to use for the service
