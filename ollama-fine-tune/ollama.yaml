@@ -33,4 +33,5 @@ spec:
     targetPort: 11434
     nodePort: 30001      # The port on the node that you want to use for the service
   type: NodePort
+  # The port on the node that you want to use for the service
 
