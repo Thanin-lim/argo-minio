@@ -32,4 +32,4 @@ spec:
   - protocol: TCP
     port: 11434
     targetPort: 11434
-    nodePort: 11434  # Optional: specify the node port (must be between 30000-32767)
+    nodePort: 30000  # Optional: specify the node port (must be between 30000-32767)
