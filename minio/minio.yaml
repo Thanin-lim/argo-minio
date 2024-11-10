@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: minio
+  labels:
+    app: minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  serviceName: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+        - name: minio
+          image: minio/minio:latest
+          ports:
+            - containerPort: 9000
+            - containerPort: 31901
+          env:
+            - name: MINIO_ROOT_USER
+              value: minio
+            - name: MINIO_ROOT_PASSWORD
+              value: minio123
+          command:
+            - /bin/bash
+            - -c
+          args:
+            - minio server /data --console-address :31901
+          resources:
+            requests:
+              cpu: 300m
+              memory: 256Mi
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+## when use minio type ClusterIP  using port forward
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio
+spec:
+  selector:
+    app: minio
+  type: NodePort
+  ports:
+    - name: console
+      protocol: TCP
+      port: 9000
+      targetPort: 9000
+      nodePort: 31900
+    - name: management
+      protocol: TCP
+      port: 31901
+      targetPort: 31901
+      nodePort: 31901
