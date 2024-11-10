@@ -31,7 +31,7 @@ spec:
   - protocol: TCP
     port: 11434          # The port that the service will expose
     targetPort: 11434    # The port on the container that the service should forward traffic to
-    nodePort: 30002      # The port on the node that you want to use for the service
+    nodePort: 31002      # The port on the node that you want to use for the service
   type: NodePort  
 
 
