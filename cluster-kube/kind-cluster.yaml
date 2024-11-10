@@ -1,0 +1,59 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: cluster-dev  # Specify a new name here
+nodes:
+  - role: control-plane
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+    extraPortMappings:
+      - containerPort: 8081     # Changed from 8080 to 8081
+        hostPort: 8081          # Changed from 8080 to 8081
+        protocol: TCP
+      - containerPort: 8444     # Changed from 8443 to 8444
+        hostPort: 8444          # Changed from 8443 to 8444
+        protocol: TCP
+
+  # Add a worker node
+  - role: worker
+    extraPortMappings:
+      - containerPort: 31001
+        hostPort: 31001
+        protocol: TCP
+  - role: worker
+    extraPortMappings:
+      - containerPort: 31002
+        hostPort: 31002
+        protocol: TCP
+  - role: worker
+    extraPortMappings:
+      - containerPort: 31000
+        hostPort: 31000
+        protocol: TCP
+      - containerPort: 30003
+        hostPort: 30003
+        protocol: TCP
+      - containerPort: 30004
+        hostPort: 30004
+        protocol: TCP
+      - containerPort: 30005
+        hostPort: 30005
+        protocol: TCP
+      - containerPort: 30006
+        hostPort: 30006
+        protocol: TCP
+      - containerPort: 30007
+        hostPort: 30007
+        protocol: TCP
+      - containerPort: 30008
+        hostPort: 30008
+        protocol: TCP
+      - containerPort: 30009
+        hostPort: 30009
+        protocol: TCP
+      - containerPort: 30010
+        hostPort: 30010
+        protocol: TCP
