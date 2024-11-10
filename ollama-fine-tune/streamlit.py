@@ -3,6 +3,7 @@ import requests
 import json
 import time
 import os
+from dotenv import load_dotenv
 
 model = "test_fine_tune:latest"  
 
@@ -23,8 +24,11 @@ def show_msgs():
 
 def chat(messages):
     try:
+        load_dotenv()
+        url = os.getenv("URL")
+
         response = requests.post(
-            "http://localhost:11434/api/chat",
+            url,
             json={"model": model, "messages": messages, "stream": True},
         )
         response.raise_for_status()
@@ -49,8 +53,10 @@ def summary(messages):
     combined = sysmessage + messages
     api_message = [{"role": "user", "content": combined}]
     try:
+        load_dotenv()
+        url = os.getenv("URL")
         response = requests.post(
-            "http://localhost:11434/api/chat",
+            url,
             json={"model": model, "messages": api_message, "stream": True},
         )
         response.raise_for_status()
