@@ -29,6 +29,7 @@ spec:
     app: ollama
   ports:
   - protocol: TCP
+  - nodePort: 30005       # Choose a port within the 30005-30010 range
     port: 11434          # The port that the service will expose
     targetPort: 11434    # The port on the container that the service should forward traffic to
   type: NodePort  
